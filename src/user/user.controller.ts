@@ -8,7 +8,7 @@ export class UserController {
     constructor(private userService: UserService) { }
 
 
-@get()
+
 
 
 
