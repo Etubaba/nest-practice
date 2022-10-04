@@ -9,7 +9,6 @@ export class UserService {
          
     } 
    async  getAllUsers(){
-
         return await this.prismaService.user.findMany()
        }
    async  getUser(id:number){
@@ -25,30 +24,28 @@ export class UserService {
        }
    async createUser(user: UserDetailsDTO){
         return await this.prismaService.user.create({
-        data:{
-            name: user.name,
-            email: user.email,
-        }
+            data: user
         }) 
        }
    async updateUsers(id:number,user:updateUserDTO){
     
 
-        const updatedUser= await this.prismaService.user.findUnique({
-            where: {id}
+        const updatedUser= await this.prismaService.user.update({
+            where: {id},
+            data: user
         })
 
         if(!updatedUser) throw new UserNotFoundException(id)
 
-
-        return await  this.prismaService.user.update({
-            where: {id},
-            data:{ ...updatedUser}
-        })
+        return updatedUser
+        // return await  this.prismaService.user.update({
+        //     where: {id},
+        //     data:{ ...updatedUser}
+        // })
        }
-   async  deleteUser(){
-
-        return await this.prismaService.user.findMany()
+   async  deleteUser(id:number){
+        const deletedUser= await this.prismaService.user.delete({where: {id}})
+        return {msg:'User deleted successfully',user:deletedUser}
        }
 
 
