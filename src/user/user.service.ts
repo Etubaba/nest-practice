@@ -41,18 +41,6 @@ export class UserService {
            
 
 
-            //delete theUser.password;
-            // return theUser
-
-        // } catch (e: any) {
-
-        //     console.log(e.message)
-
-        // }
-        // const hashedPassword = await bcrypt.hash(password,10)
-        // return await this.prismaService.user.create({
-        //     data:{email,name,password:hashedPassword}
-        // }) 
     }
     async updateUsers(id: number, user: updateUserDTO) {
 

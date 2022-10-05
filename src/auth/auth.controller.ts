@@ -7,9 +7,12 @@ export class AuthController {
 
 @Post()
  async  login(@Body() user:AuthDTO) {
-    return await this.AuthService.login(user)
+   return await this.AuthService.login(user)
 }
 
-
-
+@Post('auth')
+ async AuthJWT(@Body() user:AuthDTO) {
+  // return await this.AuthService.login(user)
+   return await this.AuthService.authJwt(user);
+}
 }
