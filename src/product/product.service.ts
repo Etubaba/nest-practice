@@ -21,8 +21,10 @@ export class ProductService {
     }
 
     async createProduct(product: CreateProductDto) {
+
+        const {productName,userId,categoryId}=product
         const newProduct = await this.prismaService.products.create({
-            data: product
+            data: {productName,userId,categoryId}
         })
         return { status: true, data: newProduct }
     }
